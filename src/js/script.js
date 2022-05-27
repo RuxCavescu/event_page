@@ -11,14 +11,14 @@ export const eventData = async () => {
 
   // Creating modals based on Modal class
 
-  const Modals = usableEventData.map((e) => {
-    return new Modal(e.name, e.description, e.date, e.image_url);
-  });
+  // const Modals = usableEventData.map((e) => {
+  //   return new Modal(e.name, e.description, e.date, e.image_url, e.id);
+  // });
 
-  console.log(Modals);
+  // console.log(Modals);
 
 
-  document.body.appendChild(Modals[0].element)
+
 
   // Modals.forEach((e) => {
   //   console.log(e);
@@ -33,6 +33,6 @@ eventData();
 
 const createEvents = (usableEventData) => {
   for (let i = 1; i < usableEventData.length; i++) {
-    new Widget(usableEventData[i].name);
+    new Widget(usableEventData[i].name, usableEventData[i].description, usableEventData[i].data, usableEventData[i].image_url, usableEventData[i].id);
   }
 };
