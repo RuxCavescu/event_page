@@ -41,13 +41,9 @@ const createEvents = (usableEventData) => {
 // creating a featured event box
 const featuredEvent = (usableEventData) => {
   const mainEvent = document.querySelector(".main__event");
-  // const eventContainer = document.createElement("div");
-  // eventContainer.classList.add("event__container");
-  // mainEvent.appendChild(eventContainer);
   const img = usableEventData[0].image_url;
   const eventName = usableEventData[0].name;
   const eventDesc = usableEventData[0].description;
-  console.log(eventName);
   mainEvent.innerHTML = `
   <h2>FEATURED EVENT</h2>
   <img class="event__img" src="${img}" alt="event image">
