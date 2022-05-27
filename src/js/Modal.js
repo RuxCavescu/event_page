@@ -1,26 +1,33 @@
+import { eventData } from "./script";
+
+
 export class Modal {
-  constructor() {
+  constructor(name, description, schedule, imageURL) {
+    this.name = name
+    this.description = description
+    this.schedule = schedule
+    this.image = imageURL
+
     this.element = document.createElement("div");
     this.createHTML();
+    this.register()
   }
 
   createHTML() {
-    this.element.classList.add("modal-page");
+    this.element.classList.add("modal-page__background");
     this.element.innerHTML = `
+
+    <div class="modal-page">
+    <span class="modal-page__close">&times;</span>
     <div class="modal-page__info">
     <img class="modal-page__image" src="" alt="" class="s" />
     <div class="modal-page__description">
-      <h2 class="modal-page__headline">Find out Prague with locals</h2>
+      <h2 class="modal-page__headline">${this.name}</h2>
       <h3 class="modal-page__subtitle">Description</h3>
-      <p class="modal-page__text">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta
-        tempore similique, voluptate facere minima atque quaerat
-        accusantium? Aliquam, ipsam modi, quae placeat quaerat eum hic
-        repudiandae, voluptates inventore ipsum officia!
+      <p class="modal-page__text">${this.description}
       </p>
       <h3 class="modal-page__subtitle">Schedule</h3>
-      <p class="modal-page__text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+      <p class="modal-page__text">${this.schedule}
       </p>
     </div>
   </div>
@@ -37,15 +44,36 @@ export class Modal {
       <label class="modal-page__label" for="name">Your email adress
         <input type="text" name="email" id="email" class="modal-page__input">
       </label>
-      <label class="modal-page__label" for="phonw">Your telephone number
+      <label class="modal-page__label" for="phone">Your telephone number
         <input type="text" name="phone" id="phone" class="modal-page__input">
       </label>
       <label class="modal-page__label" for="comments">Your questions or comments
         <textarea name="comments" id="comments" class="modal-page__input"></textarea>
       </label>
-      <button class="modal-page__button">REGISTER</button>
+      <button type="submit" class="modal-page__button">REGISTER</button>
     </form>
   </div>
-    `;
+  </div>
+    `
+
+    const closeButton = this.element.querySelector(".modal-page__close")
+    closeButton.addEventListener("click", () => {
+      this.element.style.display = "none"
+    })
+    ;
+  }
+
+  register() {
+    const registerButton = this.element(".modal-page__button")
+    let name = this.element("input#name").value
+    let surname = this.element("input#surname").value
+    let email = this.element("input#email").value
+    let phone = this.element("input#phone").value
+
+    registerButton.addEventListener("click", (event) => {
+      evenet.preventDefault()
+    })
+
+
   }
 }
