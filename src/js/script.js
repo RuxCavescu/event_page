@@ -24,8 +24,15 @@ export const eventData = async () => {
   //   console.log(e);
   //   document.body.appendChild(e.element)
   // })
+  createEvents(usableEventData);
 };
 
 
 
 eventData();
+
+const createEvents = (usableEventData) => {
+  for (let i = 1; i < usableEventData.length; i++) {
+    new Widget(usableEventData[i].name);
+  }
+};
