@@ -7,6 +7,13 @@ const eventData = async () => {
   const usableEventData = await response.json();
 
   console.log(usableEventData);
+  createEvents(usableEventData);
 };
 
 eventData();
+
+const createEvents = (usableEventData) => {
+  for (let i = 1; i < usableEventData.length; i++) {
+    new Widget(usableEventData[i].name);
+  }
+};
