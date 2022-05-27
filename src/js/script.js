@@ -54,7 +54,7 @@ const featuredEvent = (usableEventData) => {
   </div>
   <div class="event__button"><button>REGISTER</button></div>
   </div>
-  `;
+  `
   const btn = document.querySelector("button");
   btn.addEventListener("click", () => {
     new Modal(
