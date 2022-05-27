@@ -40,14 +40,13 @@ body {
 .secondary__events {
   display: flex;
   flex-flow: row wrap;
-  flex: 1;
   width: 70%;
   padding: 40px 0;
 }
 
 .event {
   height: 200px;
-  width: 200px;
+  width: 30%;
   padding: 50px 20px;
   background-color: lightgray;
   display: flex;
