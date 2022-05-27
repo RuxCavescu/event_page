@@ -47,7 +47,7 @@ export class Modal {
         <input type="text" name="phone" id="phone" class="modal-page__input">
       </label>
       <label class="modal-page__label" for="age">
-      <input type="checkbox" name="phone" id="age" class="modal-page__input modal-page__input--left">I am old enough to participate
+      <input type="checkbox" name="phone" id="age" class="modal-page__input--left">I am old enough to participate
     </label>
       <label class="modal-page__label" for="comments">Your questions or comments
         <textarea name="comments" id="comments" class="modal-page__input"></textarea>
