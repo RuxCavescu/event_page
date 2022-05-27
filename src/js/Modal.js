@@ -1,4 +1,4 @@
-import { eventData } from "./script";
+import { eventData } from './script';
 
 export class Modal {
   constructor(name, description, schedule, imageURL, eventId) {
@@ -8,12 +8,12 @@ export class Modal {
     this.image = imageURL;
     this.event = eventId;
 
-    this.element = document.createElement("div");
+    this.element = document.createElement('div');
     this.createHTML();
   }
 
   createHTML() {
-    this.element.classList.add("modal-page__background");
+    this.element.classList.add('modal-page__background');
     this.element.innerHTML = `
 
     <div class="modal-page">
@@ -58,23 +58,23 @@ export class Modal {
   </div>
     `;
 
-    const closeButton = this.element.querySelector(".modal-page__close");
-    closeButton.addEventListener("click", () => {
-      this.element.style.display = "none";
+    const closeButton = this.element.querySelector('.modal-page__close');
+    closeButton.addEventListener('click', () => {
+      this.element.style.display = 'none';
     });
 
-    const registerButton = this.element.querySelector(".modal-page__button");
-    registerButton.addEventListener("click", this.register);
+    const registerButton = this.element.querySelector('.modal-page__button');
+    registerButton.addEventListener('click', this.register);
     document.body.appendChild(this.element);
   }
 
   register = () => {
     try {
-      let nameIn = this.element.querySelector("#name").value;
-      let surnameIn = this.element.querySelector("#surname").value;
-      let emailIn = this.element.querySelector("#email").value;
-      let phoneIn = this.element.querySelector("#phone").value;
-      let commentsIn = this.element.querySelector("#comments").value;
+      let nameIn = this.element.querySelector('#name').value;
+      let surnameIn = this.element.querySelector('#surname').value;
+      let emailIn = this.element.querySelector('#email').value;
+      let phoneIn = this.element.querySelector('#phone').value;
+      let commentsIn = this.element.querySelector('#comments').value;
 
       const sendData = async () => {
         const url = `https://test-api.codingbootcamp.cz/api/597ac8ff/events/${this.event}/registrations`;
@@ -89,10 +89,10 @@ export class Modal {
         //
         //
         const response = await fetch(url, {
-          method: "POST",
+          method: 'POST',
           body: JSON.stringify(dataToSend),
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
         });
         //
@@ -101,16 +101,16 @@ export class Modal {
         console.log(usableDataToSend);
 
         const registerButton = this.element.querySelector(
-          ".modal-page__button"
+          '.modal-page__button'
         );
-        if (usableDataToSend.status == "success") {
-          registerButton.style.backgroundColor = "green"
-          registerButton.style.color = "white"
-          registerButton.textContent = "SUCCESS"
+        if (usableDataToSend.status == 'success') {
+          registerButton.style.backgroundColor = 'green';
+          registerButton.style.color = 'white';
+          registerButton.textContent = 'SUCCESS';
         } else {
-          registerButton.style.backgroundColor = "red"
-          registerButton.style.color = "white"
-          registerButton.textContent = "FAILURE"
+          registerButton.style.backgroundColor = 'red';
+          registerButton.style.color = 'white';
+          registerButton.textContent = 'FAILURE';
         }
       };
 
@@ -136,7 +136,7 @@ export class Modal {
       ;
     } catch (e) {
       console.log(e);
-      console.log("Your message");
+      console.log('Your message');
     }
   };
 }

@@ -1,9 +1,9 @@
-import { Widget } from "./widget";
-import { Modal } from "./Modal";
+import { Widget } from './widget';
+import { Modal } from './Modal';
 
 export const eventData = async () => {
   const response = await fetch(
-    "https://test-api.codingbootcamp.cz/api/597ac8ff/events"
+    'https://test-api.codingbootcamp.cz/api/597ac8ff/events'
   );
   const usableEventData = await response.json();
 
@@ -40,7 +40,7 @@ const createEvents = (usableEventData) => {
 };
 // creating a featured event box
 const featuredEvent = (usableEventData) => {
-  const mainEvent = document.querySelector(".main__event");
+  const mainEvent = document.querySelector('.main__event');
   const img = usableEventData[0].image_url;
   const eventName = usableEventData[0].name;
   const eventDesc = usableEventData[0].description;
@@ -54,9 +54,9 @@ const featuredEvent = (usableEventData) => {
   </div>
   <div class="event__button"><button>REGISTER</button></div>
   </div>
-  `
-  const btn = document.querySelector("button");
-  btn.addEventListener("click", () => {
+  `;
+  const btn = document.querySelector('button');
+  btn.addEventListener('click', () => {
     new Modal(
       usableEventData[0].name,
       usableEventData[0].description,
