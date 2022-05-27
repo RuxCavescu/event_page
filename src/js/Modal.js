@@ -65,46 +65,59 @@ export class Modal {
 
     const registerButton = this.element.querySelector(".modal-page__button");
     registerButton.addEventListener("click", this.register);
-    document.body.appendChild(this.element)
+    document.body.appendChild(this.element);
   }
 
-  register = () => { 
+  register = () => {
     try {
-    let nameIn = this.element.querySelector("#name").value;
-    let surnameIn = this.element.querySelector("#surname").value;
-    let emailIn = this.element.querySelector("#email").value;
-    let phoneIn = this.element.querySelector("#phone").value;
-    let commentsIn = this.element.querySelector("#comments").value;
+      let nameIn = this.element.querySelector("#name").value;
+      let surnameIn = this.element.querySelector("#surname").value;
+      let emailIn = this.element.querySelector("#email").value;
+      let phoneIn = this.element.querySelector("#phone").value;
+      let commentsIn = this.element.querySelector("#comments").value;
 
-    const sendData = async () => {
-      const url = `https://test-api.codingbootcamp.cz/api/597ac8ff/events/${this.event}/registrations`;
+      const sendData = async () => {
+        const url = `https://test-api.codingbootcamp.cz/api/597ac8ff/events/${this.event}/registrations`;
 
-      const dataToSend = {
-        name: nameIn,
-        surname: surnameIn,
-        email: emailIn,
-        phone: phoneIn,
-        comments: commentsIn,
+        const dataToSend = {
+          name: nameIn,
+          surname: surnameIn,
+          email: emailIn,
+          phone: phoneIn,
+          comments: commentsIn,
+        };
+        //
+        //
+        const response = await fetch(url, {
+          method: "POST",
+          body: JSON.stringify(dataToSend),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        //
+        //
+        const usableDataToSend = await response.json();
+        console.log(usableDataToSend);
+
+        const registerButton = this.element.querySelector(
+          ".modal-page__button"
+        );
+        if (usableDataToSend.status == "success") {
+          registerButton.style.backgroundColor = "green"
+          registerButton.style.color = "white"
+          registerButton.textContent = "SUCCESS"
+        } else {
+          registerButton.style.backgroundColor = "red"
+          registerButton.style.color = "white"
+          registerButton.textContent = "FAILURE"
+        }
       };
-      //
-      //
-      const response = await fetch(url, {
-        method: "POST",
-        body: JSON.stringify(dataToSend),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      //
-      //
-      const usableDataToSend = await response.json();
-      console.log(usableDataToSend);
-    };
 
-    sendData()
-  } catch (e) {
-    console.log(e);
-    console.log("Your message");
-  }
+      sendData();
+    } catch (e) {
+      console.log(e);
+      console.log("Your message");
+    }
   };
 }
