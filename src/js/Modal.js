@@ -114,7 +114,26 @@ export class Modal {
         }
       };
 
-      sendData();
+
+      if (nameIn != "" && /\d/.test(nameIn) == false) {
+        sendData()
+      } else {
+        this.element.querySelector("#name").style.border = "2px solid red"
+      }
+
+      if (surnameIn != "" && /\d/.test(surnameIn) == false) {
+        sendData()
+      } else {
+        this.element.querySelector("#surname").style.border = "2px solid red"
+      }
+
+      if (emailIn != "" && emailIn.includes("@") == true) {
+        sendData()
+      } else {
+        this.element.querySelector("#email").style.border = "2px solid red"
+      }
+
+      ;
     } catch (e) {
       console.log(e);
       console.log("Your message");
