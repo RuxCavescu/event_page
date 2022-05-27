@@ -1,15 +1,15 @@
 import { eventData } from './script';
 
 export class Modal {
-  constructor(name, description, schedule, imageURL) {
+  constructor(name, description, schedule, imageURL, eventId) {
     this.name = name;
     this.description = description;
     this.schedule = schedule;
     this.image = imageURL;
+    this.event = eventId;
 
     this.element = document.createElement('div');
     this.createHTML();
-    this.register();
   }
 
   createHTML() {
@@ -19,7 +19,7 @@ export class Modal {
     <div class="modal-page">
     <span class="modal-page__close">&times;</span>
     <div class="modal-page__info">
-    <img class="modal-page__image" src="" alt="" class="s" />
+    <img class="modal-page__image" src="${this.image}" alt="" class="s" />
     <div class="modal-page__description">
       <h2 class="modal-page__headline">${this.name}</h2>
       <h3 class="modal-page__subtitle">Description</h3>
@@ -49,7 +49,7 @@ export class Modal {
       <label class="modal-page__label" for="comments">Your questions or comments
         <textarea name="comments" id="comments" class="modal-page__input"></textarea>
       </label>
-      <button type="submit" class="modal-page__button">REGISTER</button>
+      <button type="button" class="modal-page__button">REGISTER</button>
     </form>
   </div>
   </div>
@@ -59,17 +59,49 @@ export class Modal {
     closeButton.addEventListener('click', () => {
       this.element.style.display = 'none';
     });
-  }
 
-  register() {
     const registerButton = this.element.querySelector('.modal-page__button');
-    let name = this.element('input#name').value;
-    let surname = this.element('input#surname').value;
-    let email = this.element('input#email').value;
-    let phone = this.element('input#phone').value;
-
-    registerButton.addEventListener('click', (event) => {
-      evenet.preventDefault();
-    });
+    registerButton.addEventListener('click', this.register);
+    document.body.appendChild(this.element);
   }
+
+  register = () => {
+    try {
+      let nameIn = this.element.querySelector('#name').value;
+      let surnameIn = this.element.querySelector('#surname').value;
+      let emailIn = this.element.querySelector('#email').value;
+      let phoneIn = this.element.querySelector('#phone').value;
+      let commentsIn = this.element.querySelector('#comments').value;
+
+      const sendData = async () => {
+        const url = `https://test-api.codingbootcamp.cz/api/597ac8ff/events/${this.event}/registrations`;
+
+        const dataToSend = {
+          name: nameIn,
+          surname: surnameIn,
+          email: emailIn,
+          phone: phoneIn,
+          comments: commentsIn,
+        };
+        //
+        //
+        const response = await fetch(url, {
+          method: 'POST',
+          body: JSON.stringify(dataToSend),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        //
+        //
+        const usableDataToSend = await response.json();
+        console.log(usableDataToSend);
+      };
+
+      sendData();
+    } catch (e) {
+      console.log(e);
+      console.log('Your message');
+    }
+  };
 }

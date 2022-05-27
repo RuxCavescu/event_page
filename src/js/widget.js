@@ -1,6 +1,12 @@
+import { Modal } from "./Modal";
+
 class Widget {
-  constructor(name) {
+  constructor(name, description, schedule, imageURL, eventId) {
     this.name = name;
+    this.description = description;
+    this.schedule = schedule;
+    this.image = imageURL;
+    this.event = eventId;
     this.createWidget();
   }
 
@@ -12,7 +18,13 @@ class Widget {
     // this.elem.querySelector('button').addEventListener('click', functionToOpenModale);
 
     document.querySelector('.secondary__events').appendChild(this.elem);
+    this.elem.querySelector(".btn").addEventListener("click", () => {
+      new Modal(this.name, this.description, this.schedule, this.image, this.event)
+
+    })
   }
+
+  
 }
 
 export { Widget };
