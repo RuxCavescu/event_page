@@ -101,6 +101,7 @@ export class Modal {
     sendData()
   } catch (e) {
     console.log(e);
+    console.log("Your message");
   }
   };
 }
