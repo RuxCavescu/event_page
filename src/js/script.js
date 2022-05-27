@@ -32,7 +32,7 @@ const createEvents = (usableEventData) => {
     new Widget(
       usableEventData[i].name,
       usableEventData[i].description,
-      usableEventData[i].data,
+      usableEventData[i].date,
       usableEventData[i].image_url,
       usableEventData[i].id
     );
