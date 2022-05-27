@@ -1,20 +1,19 @@
-import { eventData } from "./script";
-
+import { eventData } from './script';
 
 export class Modal {
   constructor(name, description, schedule, imageURL) {
-    this.name = name
-    this.description = description
-    this.schedule = schedule
-    this.image = imageURL
+    this.name = name;
+    this.description = description;
+    this.schedule = schedule;
+    this.image = imageURL;
 
-    this.element = document.createElement("div");
+    this.element = document.createElement('div');
     this.createHTML();
-    this.register()
+    this.register();
   }
 
   createHTML() {
-    this.element.classList.add("modal-page__background");
+    this.element.classList.add('modal-page__background');
     this.element.innerHTML = `
 
     <div class="modal-page">
@@ -54,26 +53,23 @@ export class Modal {
     </form>
   </div>
   </div>
-    `
+    `;
 
-    const closeButton = this.element.querySelector(".modal-page__close")
-    closeButton.addEventListener("click", () => {
-      this.element.style.display = "none"
-    })
-    ;
+    const closeButton = this.element.querySelector('.modal-page__close');
+    closeButton.addEventListener('click', () => {
+      this.element.style.display = 'none';
+    });
   }
 
   register() {
-    const registerButton = this.element(".modal-page__button")
-    let name = this.element("input#name").value
-    let surname = this.element("input#surname").value
-    let email = this.element("input#email").value
-    let phone = this.element("input#phone").value
+    const registerButton = this.element.querySelector('.modal-page__button');
+    let name = this.element('input#name').value;
+    let surname = this.element('input#surname').value;
+    let email = this.element('input#email').value;
+    let phone = this.element('input#phone').value;
 
-    registerButton.addEventListener("click", (event) => {
-      evenet.preventDefault()
-    })
-
-
+    registerButton.addEventListener('click', (event) => {
+      evenet.preventDefault();
+    });
   }
 }
