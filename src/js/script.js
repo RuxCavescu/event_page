@@ -55,4 +55,14 @@ const featuredEvent = (usableEventData) => {
   <div class="event__button"><button>REGISTER</button></div>
   </div>
   `;
+  const btn = document.querySelector('button');
+  btn.addEventListener('click', () => {
+    new Modal(
+      usableEventData[0].name,
+      usableEventData[0].description,
+      usableEventData[0].date,
+      usableEventData[0].image_url,
+      usableEventData[0].id
+    );
+  });
 };

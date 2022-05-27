@@ -46,6 +46,9 @@ export class Modal {
       <label class="modal-page__label" for="phone">Your telephone number
         <input type="text" name="phone" id="phone" class="modal-page__input">
       </label>
+      <label class="modal-page__label" for="age">
+      <input type="checkbox" name="phone" id="age" class="modal-page__input--left">I am old enough to participate
+    </label>
       <label class="modal-page__label" for="comments">Your questions or comments
         <textarea name="comments" id="comments" class="modal-page__input"></textarea>
       </label>
@@ -96,6 +99,19 @@ export class Modal {
         //
         const usableDataToSend = await response.json();
         console.log(usableDataToSend);
+
+        const registerButton = this.element.querySelector(
+          '.modal-page__button'
+        );
+        if (usableDataToSend.status == 'success') {
+          registerButton.style.backgroundColor = 'green';
+          registerButton.style.color = 'white';
+          registerButton.textContent = 'SUCCESS';
+        } else {
+          registerButton.style.backgroundColor = 'red';
+          registerButton.style.color = 'white';
+          registerButton.textContent = 'FAILURE';
+        }
       };
 
       sendData();
